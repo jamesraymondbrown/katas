@@ -25,12 +25,11 @@ const companySalesData = [
 const calculateSalesTax = function (salesData, taxRates) {
   const results = {};
   const totalledSales = [];
-  // Iterate through sales data
+
   for (const saleData of salesData) {
     const saleDataObject = {};
     let salesTotal = 0;
     for (const sale of saleData.sales) {
-      // console.log("sale", sale);
       salesTotal = salesTotal + sale;
     }
     saleDataObject.name = saleData.name;
@@ -44,17 +43,22 @@ const calculateSalesTax = function (salesData, taxRates) {
     if (saleData.province === "SK") {
       saleDataObject.taxesTotal = salesTotal * 0.1;
     }
-
     totalledSales.push(saleDataObject);
   }
 
-  console.log("total", totalledSales);
+  for (const sales of totalledSales) {
+    if (!results[sales.name]) {
+      results[sales.name] = {
+        totalSales: sales.salesTotal,
+        totalTaxes: sales.taxesTotal,
+      };
+    } else {
+      results[sales.name].totalSales += sales.salesTotal;
+      results[sales.name].totalTaxes += sales.taxesTotal;
+    }
+  }
 
-  // Calculate Sales totals and taxes
-
-  // Group data by company
-
-  // Return object with value for each company
+  return results;
 };
 
 console.log(calculateSalesTax(companySalesData, salesTaxRates));
