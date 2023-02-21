@@ -34,15 +34,8 @@ const calculateSalesTax = function (salesData, taxRates) {
     }
     saleDataObject.name = saleData.name;
     saleDataObject.salesTotal = salesTotal;
-    if (saleData.province === "AB") {
-      saleDataObject.taxesTotal = salesTotal * 0.05;
-    }
-    if (saleData.province === "BC") {
-      saleDataObject.taxesTotal = salesTotal * 0.12;
-    }
-    if (saleData.province === "SK") {
-      saleDataObject.taxesTotal = salesTotal * 0.1;
-    }
+    saleDataObject.taxesTotal = salesTotal * taxRates[saleData.province];
+
     totalledSales.push(saleDataObject);
   }
 
