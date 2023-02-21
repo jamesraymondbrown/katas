@@ -34,9 +34,7 @@ const data = {
 const biggestFollower = () => {
   let mostFollows = 0;
   let userWithMostFollows = "";
-  for (let user in data) {
-    // console.log(data[user]);
-
+  for (const user in data) {
     if (data[user].follows.length > mostFollows) {
       mostFollows = data[user].follows.length;
       userWithMostFollows = data[user].name;
@@ -45,4 +43,30 @@ const biggestFollower = () => {
   return userWithMostFollows;
 };
 
-console.log(biggestFollower());
+// console.log(biggestFollower());
+
+const mostPopular = () => {
+  let followersCountObject = {};
+  for (const user in data) {
+    for (const followee of data[user].follows) {
+      if (!followersCountObject[followee]) {
+        followersCountObject[followee] = 1;
+      } else {
+        followersCountObject[followee] += 1;
+      }
+    }
+  }
+
+  let mostFollowers = 0;
+  let userWithMostFollowers = "";
+  for (const user in followersCountObject) {
+    if (followersCountObject[user] > mostFollowers) {
+      mostFollowers = followersCountObject[user];
+      userWithMostFollowers = user;
+    }
+  }
+
+  return data[userWithMostFollowers].name;
+};
+
+console.log(mostPopular());
