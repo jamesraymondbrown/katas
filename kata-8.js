@@ -1,5 +1,19 @@
 const repeatNumbers = function (data) {
-  // Put your solution here
+  const returnData = [];
+
+  for (let dat of data) {
+    let number = dat[0];
+    let repetitions = dat[1];
+    let repeatedNumberArray = [];
+
+    for (let j = 0; j < repetitions; j++) {
+      repeatedNumberArray.push(number);
+    }
+
+    returnData.push(repeatedNumberArray.join(""));
+  }
+
+  return returnData.join(" ");
 };
 
 console.log(repeatNumbers([[1, 10]]));
