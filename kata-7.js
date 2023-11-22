@@ -1,5 +1,24 @@
 const whereCanIPark = function (spots, vehicle) {
-  // Code here!
+  const vehicleType = vehicle[0].toUpperCase();
+
+  for (let y = 0; y < spots.length; y++) {
+    for (let x = 0; x < spots[y].length; x++) {
+      if (vehicleType === spots[y][x]) {
+        return [x, y];
+      }
+      if (vehicleType === "S" && spots[y][x] === "R") {
+        return [x, y];
+      }
+      if (
+        (vehicleType === "M" && spots[y][x] === "R") ||
+        (vehicleType === "M" && spots[y][x] === "S")
+      ) {
+        return [x, y];
+      }
+    }
+  }
+
+  return false;
 };
 
 console.log(
