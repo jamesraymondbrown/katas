@@ -1,5 +1,30 @@
+const ingredientCheck = (bakery, ingredients) => {
+  for (let i = 0; i < bakery.length; i++) {
+    for (let j = 0; j < ingredients.length; j++) {
+      if (bakery[i] === ingredients[j]) {
+        return bakery[i];
+      }
+    }
+  }
+};
+
 const chooseRecipe = function (bakeryA, bakeryB, recipes) {
-  // Code here!
+  let recipeName = [];
+
+  recipes.forEach((recipe) => {
+    const aIngredient = ingredientCheck(bakeryA, recipe.ingredients);
+    const bIngredient = ingredientCheck(bakeryB, recipe.ingredients);
+
+    if (aIngredient !== undefined && bIngredient !== undefined) {
+      recipeName.push(recipe.name);
+    }
+  });
+
+  if (recipeName !== undefined) {
+    return recipeName[0];
+  }
+
+  return "No recipe can be made :'(";
 };
 
 let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
