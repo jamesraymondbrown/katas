@@ -83,6 +83,27 @@ const titleCase = function (input) {
   return caseArray.join("");
 };
 
+const vowelCase = function (input) {
+  const charArray = input.split("");
+  const caseArray = [];
+
+  for (let i = 0; i < charArray.length; i++) {
+    if (
+      charArray[i] === "a" ||
+      charArray[i] === "e" ||
+      charArray[i] === "i" ||
+      charArray[i] === "o" ||
+      charArray[i] === "u"
+    ) {
+      caseArray.push(charArray[i].toUpperCase());
+    } else {
+      caseArray.push(charArray[i]);
+    }
+  }
+
+  return caseArray.join("");
+};
+
 const makeCase = function (input, outputCase) {
   let output = "";
 
@@ -104,6 +125,10 @@ const makeCase = function (input, outputCase) {
   }
   if (outputCase === "title") {
     output = titleCase(input);
+    return output;
+  }
+  if (outputCase === "vowel") {
+    output = vowelCase(input);
     return output;
   }
 
