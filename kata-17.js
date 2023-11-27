@@ -1,6 +1,5 @@
 const urlDecode = function (text) {
   const urlObject = {};
-
   const keyValuePairs = text.split("&");
 
   for (let pair of keyValuePairs) {
