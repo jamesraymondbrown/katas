@@ -37,16 +37,29 @@ const snakeCase = function (input) {
   const caseArray = [];
 
   for (let i = 0; i < charArray.length; i++) {
-    if (charArray[i - 1] === " ") {
-      caseArray.push(charArray[i].toLowerCase());
-      continue;
-    }
     if (charArray[i] !== " ") {
-      caseArray.push(charArray[i]);
+      caseArray.push(charArray[i].toLowerCase());
       continue;
     }
     if (charArray[i] === " ") {
       caseArray.push("_");
+    }
+  }
+
+  return caseArray.join("");
+};
+
+const kebabCase = function (input) {
+  const charArray = input.split("");
+  const caseArray = [];
+
+  for (let i = 0; i < charArray.length; i++) {
+    if (charArray[i] !== " ") {
+      caseArray.push(charArray[i].toLowerCase());
+      continue;
+    }
+    if (charArray[i] === " ") {
+      caseArray.push("-");
     }
   }
 
@@ -66,6 +79,10 @@ const makeCase = function (input, outputCase) {
   }
   if (outputCase === "snake") {
     output = snakeCase(input);
+    return output;
+  }
+  if (outputCase === "kebab") {
+    output = kebabCase(input);
     return output;
   }
 
