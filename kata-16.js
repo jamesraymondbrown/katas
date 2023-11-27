@@ -66,6 +66,23 @@ const kebabCase = function (input) {
   return caseArray.join("");
 };
 
+const titleCase = function (input) {
+  const charArray = input.split("");
+  const caseArray = [];
+
+  for (let i = 0; i < charArray.length; i++) {
+    if (i === 0) {
+      caseArray.push(charArray[i].toUpperCase());
+    } else if (charArray[i - 1] === " ") {
+      caseArray.push(charArray[i].toUpperCase());
+    } else {
+      caseArray.push(charArray[i]);
+    }
+  }
+
+  return caseArray.join("");
+};
+
 const makeCase = function (input, outputCase) {
   let output = "";
 
@@ -83,6 +100,10 @@ const makeCase = function (input, outputCase) {
   }
   if (outputCase === "kebab") {
     output = kebabCase(input);
+    return output;
+  }
+  if (outputCase === "title") {
+    output = titleCase(input);
     return output;
   }
 
