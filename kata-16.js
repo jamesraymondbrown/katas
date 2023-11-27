@@ -13,11 +13,35 @@ const camelCase = function (input) {
   return camelCaseArray.join("");
 };
 
+const pascalCase = function (input) {
+  const charArray = input.split("");
+  const camelCaseArray = [];
+
+  for (let i = 0; i < charArray.length; i++) {
+    if (i === 0) {
+      camelCaseArray.push(charArray[i].toUpperCase());
+      continue;
+    }
+    if (charArray[i - 1] === " ") {
+      camelCaseArray.push(charArray[i].toUpperCase());
+    } else if (charArray[i] !== " ") {
+      camelCaseArray.push(charArray[i]);
+    }
+  }
+
+  return camelCaseArray.join("");
+};
+
 const makeCase = function (input, outputCase) {
   let output = "";
 
   if (outputCase === "camel") {
     output = camelCase(input);
+    return output;
+  }
+  if (outputCase === "pascal") {
+    output = pascalCase(input);
+    return output;
   }
 
   return output;
